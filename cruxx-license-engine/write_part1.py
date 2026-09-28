@@ -1,0 +1,80 @@
+from pathlib import Path
+
+base = Path(r"C:\Users\aryan mathur\.gemini\antigravity\scratch\cruxx-license-engine")
+pkg = base / "cruxx_license"
+
+(pkg / "__init__.py").write_text('''"""
+Cruxx Solutions - CORTA LicenseGuard Engine
+"""
+
+__version__ = "1.0.0"
+__author__ = "Cruxx Solutions Private Limited"
+
+from .engine import (
+    CORTALicenseGuard,
+    require_feature,
+    CruxxSecurityException,
+    CruxxTamperLockoutError,
+    CruxxLicenseInvalidError,
+    CruxxIntegrityViolationError,
+)
+
+__all__ = [
+    "CORTALicenseGuard",
+    "require_feature",
+    "CruxxSecurityException",
+    "CruxxTamperLockoutError",
+    "CruxxLicenseInvalidError",
+    "CruxxIntegrityViolationError",
+]
+''', encoding="utf-8")
+
+(pkg / "constants.py").write_text('''"""
+Constants and Security Specifications for CORTA LicenseGuard
+"""
+
+# Cryptographic Specifications
+ASYMMETRIC_ALGORITHM = "Ed25519"
+HASH_ALGORITHM = "SHA-256"
+CANONICAL_ENCODING = "utf-8"
+
+# Lockout & Tripwire Codes
+TAMPER_CODE_FILE_MODIFIED = "TAMPER_FILE_MODIFIED"
+TAMPER_CODE_FILE_MISSING = "TAMPER_FILE_MISSING"
+TAMPER_CODE_FILE_UNTRACKED = "TAMPER_FILE_UNTRACKED"
+TAMPER_CODE_MANIFEST_INVALID = "TAMPER_MANIFEST_SIGNATURE_INVALID"
+TAMPER_CODE_SIGNATURE_MISMATCH = "TAMPER_LICENSE_SIGNATURE_INVALID"
+TAMPER_CODE_HARDWARE_MISMATCH = "TAMPER_HARDWARE_MISMATCH"
+TAMPER_CODE_LICENSE_EXPIRED = "LICENSE_EXPIRED"
+TAMPER_CODE_CLOCK_ROLLBACK = "TAMPER_CLOCK_ROLLBACK_DETECTED"
+TAMPER_CODE_MANUAL_LOCK = "MANUAL_SECURITY_LOCK"
+TAMPER_CODE_TRIPWIRE_TRIGGERED = "TAMPER_TRIPWIRE_TRIGGERED"
+
+# Default File Names
+DEFAULT_LOCKOUT_FILE = ".corta_lockout.bin"
+DEFAULT_MANIFEST_FILE = "corta_manifest.json"
+DEFAULT_LICENSE_FILE = "corta.lic"
+DEFAULT_PUBLIC_KEY_FILE = "cruxx_public_key.pem"
+DEFAULT_PRIVATE_KEY_FILE = "cruxx_private_key.pem"
+
+# Product Tiers
+TIER_COMMUNITY = "COMMUNITY"
+TIER_COMMERCIAL = "COMMERCIAL_ENTERPRISE"
+TIER_DEFENSE = "DEFENSE_TACTICAL"
+TIER_RESEARCH = "RESEARCH_LAB"
+
+# Default Supported CORTA Modules
+KNOWN_MODULES = [
+    "corta_core",
+    "edge_ai_vision",
+    "target_tracking",
+    "bvlos_comms",
+    "anti_jam_protocol",
+    "fleet_orchestration",
+    "autonomous_pathfinding",
+    "sensor_fusion",
+    "thermal_inspection",
+]
+''', encoding="utf-8")
+
+print("Part 1 written successfully.")
